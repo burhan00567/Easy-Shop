@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Easy Shop</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    header.header {
+      background-color: #ff4c3b;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-direction: row-reverse;
+    }
+
+    .cart-icon {
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+      filter: drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.5));
+    }
+
+    .logo {
+      font-size: 40px;
+      font-weight: 900;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 600px) {
+      .logo {
+        font-size: 45px;
+      }
+
+      header.header {
+        padding: 20px;
+      }
+
+      .cart-icon {
+        width: 36px;
+        height: 36px;
+      }
+    }
+
+    .search-container {
+      display: flex;
+      width: 90%;
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: #ff4c3b;
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 25px 0 0 25px;
+      font-size: 16px;
+      outline: none;
+      background-color: white;
+      color: #333;
+    }
+
+    .search-btn {
+      padding: 12px 18px;
+      background-color: #ff4c3b;
+      color: white;
+      border: none;
+      border-radius: 0 25px 25px 0;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+ /* ক্যাটাগরি টাইটেল */
+    .category-title {
+      background-color: #2ecc71;
+      color: white;
+      padding: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      margin: 20px 10px 10px;
+      border-radius: 6px;
+    }
+
+    /* প্রোডাক্ট গ্যালারি */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .gallery-item {
+      
+      position: relative;
+      width: 100%;
+      max-width: 160px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .product-name {
+      font-size: 14px;
+      font-weight: bold;
+      padding: 5px;
+      color: #333;
+    }
+
+  .discount-badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(270deg, #b22222, #ff4444, #b22222); /* কম গাঢ় রঙ */
+  background-size: 400% 100%;
+  background-position: right;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 0 0 0 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  font-family: 'Arial', sans-serif;
+  letter-spacing: 0.5px;
+  animation: moveGradient 4s linear infinite, pop 0.8s ease-in-out infinite alternate;
+}
+
+    /* ফুটার */
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      margin-top: 30px;
+    }
+
+    /* রেস্পন্সিভ */
+    @media (max-width: 600px) {
+      .gallery-item {
+        width: 27%;
+      }
+    }
+    
+    @keyframes moveGradient {
+  0% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="logo-container">
+      <svg width="55" height="55" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+        xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="dropshadow" height="130%">
+            <feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="black" flood-opacity="0.6"/>
+          </filter>
+        </defs>
+        <g filter="url(#dropshadow)">
+          <circle cx="9" cy="21" r="1.5" fill="white" />
+          <circle cx="20" cy="21" r="1.5" fill="white" />
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+        </g>
+        <rect x="7.5" y="6.5" width="10" height="5" rx="1" fill="rgba(255,255,255,0.15)" />
+      </svg>
+      <div class="logo">Easy Shop</div>
+    </div>
+  </header>
+
+  <!-- Search -->
+  <div class="search-container">
+    <input type="text" placeholder="পণ্য সার্চ করুন..." class="search-input" />
+    <button class="search-btn">🔍</button>
+  </div>
+  <!-- 🎁 গিফট আইটেম ক্যাটাগরি -->
+  <div class="category-title">🎁 গিফট আইটেম</div>
+  <div class="gallery">
+    <div class="gallery-item">
+      <span class="discount-badge">৮০% ছাড়</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="cap">
+      <div class="product-name">cap</div>
+    </div>
+
+    <div class="gallery-item">
+      <span class="discount-badge">৩০% ছাড়</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="T-shirt">
+      <div class="product-name">টি-শার্ট</div>
+    </div>
+    
+    
+        <div class="gallery-item">
+      <span class="discount-badge">ফ্রী</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="T-shirt">
+      <div class="product-name">টি-শার্ট</div>
+    </div>
+    
+    
+        <div class="gallery-item">
+      <span class="discount-badge">ফ্রী</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="T-shirt">
+      <div class="product-name">টি-শার্ট</div>
+    </div>
+    
+    
+        <div class="gallery-item">
+      <span class="discount-badge">ফ্রী</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="T-shirt">
+      <div class="product-name">টি-শার্ট</div>
+    </div>
+    
+    
+        <div class="gallery-item">
+      <span class="discount-badge">ফ্রী</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="T-shirt">
+      <div class="product-name">কেপ</div>
+    </div>
+    
+    
+        <div class="gallery-item">
+      <span class="discount-badge">ফ্রী</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="T-shirt">
+      <div class="product-name">কোর্ট</div>
+    </div>
+    
+        <div class="gallery-item">
+      <span class="discount-badge">ফ্রী</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="T-shirt">
+      <div class="product-name">টিআর</div>
+    </div>
+    
+        <div class="gallery-item">
+      <span class="discount-badge">ফ্রী</span>
+      <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="T-shirt">
+      <div class="product-name">জেকেট</div>
+    </div>
+    </div>
+     <div class="category-title">মেকাপ( ১০০ )</div>
+  <div class="gallery">
+    <div class="gallery-item">
+       <span class="discount-badge">ফ্রী</span>
+        <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgjLEGwhz_SBr7CruVeUhwSlNwQ-li8X8tDHHCJsuCmlJVbheuBoK-JQ9DoSST-GxqId3kaaq7asLpU9cWTwdgvoykJGmvzkyTparavQv2990rxnxQxVhZiyP0wkOnd3R7RPAlqGzqyX8unf5YXWt9R65Qvv_0qGxVSuOpuIGWqD8jussjn-a7QDHgz4bs/s1024/1000078237.png" alt="T-shirt">
+      <div class="product-name">জেকেট</div>
+    </div>
+  </div>
+
+
+<!-- পেজের একেবারে শেষে BODY ট্যাগের ঠিক আগেই এই স্ক্রিপ্ট যুক্ত করো -->
+<script>
+  const searchInput = document.querySelector('.search-input');
+  const galleryItems = document.querySelectorAll('.gallery-item');
+
+  searchInput.addEventListener('input', function () {
+    const query = this.value.toLowerCase().trim();
+
+    galleryItems.forEach(item => {
+      const productName = item.querySelector('.product-name').textContent.toLowerCase();
+      if (productName.includes(query)) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+
+</body>
+</html>
